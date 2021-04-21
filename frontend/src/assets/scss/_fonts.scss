@@ -1,0 +1,48 @@
+@mixin font($alias, $name, $weight, $style: normal) {
+  @font-face {
+    font-family: $alias;
+    src: url('~assets/fonts/' + $name + '.woff2') format('woff2'),
+      url('~assets/fonts/' + $name + '.woff') format('woff'),
+      url('~assets/fonts/' + $name + '.ttf') format('truetype'),
+      url('~assets/fonts/' + $name + '.eot'),
+      url('~assets/fonts/' + $name + '.eot?#iefix') format('embedded-opentype');
+    font-weight: $weight;
+    font-style: $style;
+    font-display: swap;
+  }
+}
+
+@include font('Inter', 'Inter-Thin', 100, normal);
+@include font('Inter', 'Inter-ExtraLight', 200, normal);
+@include font('Inter', 'Inter-Light', 300, normal);
+@include font('Inter', 'Inter-Regular', 400, normal);
+@include font('Inter', 'Inter-Medium', 500, normal);
+@include font('Inter', 'Inter-SemiBold', 600, normal);
+@include font('Inter', 'Inter-Bold', 700, normal);
+@include font('Inter', 'Inter-ExtraBold', 800, normal);
+@include font('Inter', 'Inter-Black', 900, normal);
+
+@include font('Playfair Display', 'PlayfairDisplay-Regular', 400, normal);
+@include font('Playfair Display', 'PlayfairDisplay-Italic', 400, italic);
+@include font('Playfair Display', 'PlayfairDisplay-Medium', 500, normal);
+@include font('Playfair Display', 'PlayfairDisplay-MediumItalic', 500, italic);
+@include font('Playfair Display', 'PlayfairDisplay-SemiBold', 600, normal);
+@include font(
+  'Playfair Display',
+  'PlayfairDisplay-SemiBoldItalic',
+  600,
+  italic
+);
+@include font('Playfair Display', 'PlayfairDisplay-Bold', 700, normal);
+@include font('Playfair Display', 'PlayfairDisplay-BoldItalic', 700, italic);
+@include font('Playfair Display', 'PlayfairDisplay-ExtraBold', 800, normal);
+@include font(
+  'Playfair Display',
+  'PlayfairDisplay-ExtraBoldItalic',
+  800,
+  italic
+);
+@include font('Playfair Display', 'PlayfairDisplay-Black', 900, normal);
+@include font('Playfair Display', 'PlayfairDisplay-BlackItalic', 900, italic);
+
+// @include font('PT Root UI', 'PTRootUI-Light', 300);

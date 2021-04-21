@@ -1,0 +1,23 @@
+[
+  {
+    "name": "articles-slug",
+    "path": "/articles/:slug?",
+    "component": "/Users/armankuanys/Desktop/practice/refront/frontend/pages/articles/_slug.vue",
+    "chunkName": "pages/articles/_slug",
+    "_name": "_a5f8e01a"
+  },
+  {
+    "name": "categories-slug",
+    "path": "/categories/:slug?",
+    "component": "/Users/armankuanys/Desktop/practice/refront/frontend/pages/categories/_slug.vue",
+    "chunkName": "pages/categories/_slug",
+    "_name": "_be13075c"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/armankuanys/Desktop/practice/refront/frontend/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_ffbf0232"
+  }
+]

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "ESNext.AsyncIterable", "DOM"],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noEmit": true,
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"],
+      "@/*": ["./*"],
+      "atoms": ["./src/components/atoms/*"],
+      "molecules": ["./src/components/molecules/*"],
+      "organisms": ["./src/components/organisms/*"],
+      "templates": ["./src/components/templates/*"],
+      "services": ["./src/services/*"],
+      "repositories": ["./src/repositories/*"],
+      "plugins": ["./src/plugins"]
+    },
+    "types": ["@nuxt/types", "@types/node", "@nuxtjs/strapi"]
+  },
+  "exclude": ["node_modules", ".nuxt", "dist"]
+}

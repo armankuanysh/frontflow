@@ -1,0 +1,108 @@
+<template>
+  <main>
+    <div class="article-image" :style="{ marginBottom: `-${offset + 25}px` }">
+      <img
+        :src="$services.page.getStrapiMedia(article.image.url)"
+        :alt="article.title"
+      />
+    </div>
+    <div class="container">
+      <div ref="articleTop" class="article-top">
+        <nuxt-link
+          :to="{
+            path: `/${article.category.slug}`,
+            params: { slug: article.slug },
+          }"
+          class="category-link"
+        >
+          {{ article.category.name }}
+        </nuxt-link>
+        <Heading type="h1">{{ article.title }}</Heading>
+        <PublishedAt :published="$services.date.format(article.publishedAt)" />
+      </div>
+      <Content :article="article" />
+    </div>
+  </main>
+</template>
+
+<script>
+/* eslint-disable no-unused-expressions */
+import Heading from 'atoms/Heading'
+import PublishedAt from 'atoms/PublishedAt'
+import Content from 'templates/Content'
+/**
+ * 'PAGES/category'
+ * @displayName category
+ */
+export default {
+  name: 'Category',
+  components: { Content, Heading, PublishedAt },
+  async asyncData({ $strapi, params, store }) {
+    const slug = params.article
+    const article = await $strapi.find('articles', { slug })
+    store.commit('header/setTitle', 'Пост')
+    return { article: article[0] }
+  },
+  data() {
+    return {
+      offset: 0,
+    }
+  },
+  head() {
+    return {
+      base: { target: '_blank', href: `${process.env.strapiBaseUri}` },
+    }
+  },
+  mounted() {
+    this.offset = this.$refs.articleTop.getBoundingClientRect().height
+  },
+}
+</script>
+
+<style lang="scss">
+main {
+  .article-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        rgba(#fff, 0.25),
+        rgba(#fff, 0.5),
+        rgba(#fff, 0.85),
+        rgba(#fff, 1)
+      );
+    }
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .article-top {
+    position: relative;
+    width: 100%;
+    margin-bottom: 50px;
+    z-index: 2;
+  }
+  .category-link {
+    font-family: $f-heading;
+    font-size: rem(14);
+    color: lighten($c-default, 10);
+    text-decoration: none;
+  }
+
+  h1 {
+    margin: rem(10) 0 rem(18) !important;
+  }
+}
+</style>

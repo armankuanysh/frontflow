@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-size: #{($browser-context) + px};
+  @media (max-width: $small) {
+    font-size: 14px;
+  }
+}
+
+body {
+  font-family: $f-text;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: $c-default;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li,
+ol {
+  margin: 0;
+}
+
+a {
+  transition: 0.25s;
+  &:hover {
+    transform: translateY(-3%);
+  }
+  &:active {
+    transform: translateY(3%);
+  }
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  padding: 25px 0;
+}
+
+.container {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+  @include wide-tablet {
+    max-width: 1170px;
+    padding: 0;
+  }
+}
+
+.container--full {
+  width: 100%;
+  padding: 0 15px;
+}
