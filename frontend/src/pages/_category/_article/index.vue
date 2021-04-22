@@ -18,7 +18,12 @@
           {{ article.category.name }}
         </nuxt-link>
         <Heading type="h1">{{ article.title }}</Heading>
-        <PublishedAt :published="$services.date.format(article.publishedAt)" />
+        <div class="article-top__details">
+          <PublishedAt
+            :published="$services.date.format(article.publishedAt)"
+          />
+          <TimeEstimate :content="article.content" />
+        </div>
       </div>
       <Content :article="article" />
     </div>
@@ -29,6 +34,7 @@
 /* eslint-disable no-unused-expressions */
 import Heading from 'atoms/Heading'
 import PublishedAt from 'atoms/PublishedAt'
+import TimeEstimate from 'atoms/TimeEstimate'
 import Content from 'templates/Content'
 /**
  * 'PAGES/category'
@@ -36,7 +42,7 @@ import Content from 'templates/Content'
  */
 export default {
   name: 'Category',
-  components: { Content, Heading, PublishedAt },
+  components: { Content, Heading, PublishedAt, TimeEstimate },
   async asyncData({ $strapi, params, store }) {
     const slug = params.article
     const article = await $strapi.find('articles', { slug })
@@ -88,6 +94,12 @@ main {
     width: 100%;
     margin-bottom: 50px;
     z-index: 2;
+
+    &__details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
   .category-link {
     font-family: $f-heading;

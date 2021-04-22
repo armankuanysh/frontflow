@@ -7,6 +7,7 @@ import Menu, { IMenu } from 'services/Menu'
 import DateFormat, { IDateFormat } from 'services/DateFormat'
 import Header, { IHeader } from 'services/Header/index'
 import Page from 'services/Page'
+import ReadingEstimate, { IReadingEstimate } from 'services/ReadingEstimate'
 
 export type servicesT = {
   http: HttpClient
@@ -16,6 +17,7 @@ export type servicesT = {
   date: IDateFormat
   header: IHeader
   page: Page
+  reading: IReadingEstimate
 }
 
 declare module '@nuxt/types' {
@@ -45,6 +47,7 @@ export default function (ctx: Context, inject: any) {
     date: new DateFormat(),
     header: new Header(ctx.store),
     page: new Page(),
+    reading: new ReadingEstimate(),
   }
 
   inject('services', services)
