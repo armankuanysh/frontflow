@@ -92,7 +92,7 @@ main {
   .article-top {
     position: relative;
     width: 100%;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     z-index: 2;
 
     &__details {
