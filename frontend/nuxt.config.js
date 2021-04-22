@@ -30,6 +30,10 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
 
+  pageTransition: {
+    name: 'fade',
+  },
+
   srcDir: 'src/',
 
   alias: {
@@ -87,6 +91,10 @@ export default {
       },
       {
         name: 'categories',
+        type: 'collection',
+      },
+      {
+        name: 'tags',
         type: 'collection',
       },
       {

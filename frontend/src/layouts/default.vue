@@ -23,6 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  padding: 50px 0 100px;
+  padding: 60px 0 100px;
+  overflow-x: hidden;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="padded-page">
     <div class="container"></div>
     <ArticleList :title="`Посты категорий ${category.name}`" />
   </main>

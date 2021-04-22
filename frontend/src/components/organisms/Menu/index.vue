@@ -1,16 +1,19 @@
 <template>
-  <nav :class="['menu', isOpen && 'is-open']">
+  <nav :class="['menu', isOpen && 'is-open', isHiding && 'is-hiding']">
     <div class="menu-float">
       <Button class="menu-float__btn" type="circle" @click="open">
         <Shevron />
       </Button>
     </div>
-    <div class="menu-top__wrap">
-      <ul class="menu-top">
-        <li v-for="category in popular" :key="category.id">
-          <Tag :slug="'/' + category.slug">{{ category.name }}</Tag>
-        </li>
-      </ul>
+    <div class="menu-head">
+      <Tag class="menu-home" slug="/">Home</Tag>
+      <div class="menu-top__wrap">
+        <ul class="menu-top">
+          <li v-for="category in popular" :key="category.id">
+            <Tag :slug="'/' + category.slug">{{ category.name }}</Tag>
+          </li>
+        </ul>
+      </div>
     </div>
     <ul class="menu-body">
       <li v-for="category in categories" :key="category.id">
@@ -37,6 +40,8 @@ export default {
     return {
       categories: [],
       popular: [],
+      isHiding: false,
+      scrollTop: 0,
     }
   },
   async fetch() {
@@ -48,9 +53,26 @@ export default {
       return this.$store.getters['menu/state']
     },
   },
+  mounted() {
+    window.addEventListener('scroll', this.hidingHandler)
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.hidingHandler)
+  },
   methods: {
     open() {
       this.$store.commit('menu/stateHandle')
+    },
+    hidingHandler() {
+      const st = window.scrollY
+      if (st > this.scrollTop) {
+        this.isHiding = true
+      } else {
+        this.isHiding = false
+      }
+      setTimeout(() => {
+        this.scrollTop = st
+      }, 500)
     },
   },
 }
@@ -71,6 +93,10 @@ export default {
   transition: 0.5s ease-in;
   transform: translateY(calc(100% - 95px));
   z-index: 10;
+
+  &.is-hiding {
+    transform: translateY(calc(100% - 35px));
+  }
 
   &.is-open {
     transform: translateY(0);
@@ -101,6 +127,13 @@ export default {
     }
   }
 
+  .menu-head {
+    display: flex;
+    .menu-home {
+      width: 40px;
+    }
+  }
+
   .menu-top {
     position: relative;
     list-style: none;
@@ -111,6 +144,7 @@ export default {
     &__wrap {
       height: 70px;
       padding-bottom: 30px;
+      display: flex;
       overflow: scroll;
     }
   }

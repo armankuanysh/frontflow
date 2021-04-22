@@ -1,3 +1,17 @@
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(30px, 0);
+  transition: 0.5s;
+}
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  -webkit-transform: translate(-30px, 0);
+  transform: translate(-30px, 0);
+  transition: 0.5s;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   opacity: 0;
@@ -7,4 +21,13 @@
 .fade-leave {
   opacity: 1;
   transition: transform 250ms, opacity 250ms;
+}
+
+@keyframes shine {
+  0% {
+    background-position: -100px;
+  }
+  100% {
+    background-position: 400px;
+  }
 }

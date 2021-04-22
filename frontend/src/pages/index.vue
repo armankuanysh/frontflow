@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main class="padded-page">
     <ArticleList title="Последние статьи" />
   </main>
 </template>

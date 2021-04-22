@@ -2,7 +2,16 @@
   <section class="article-list">
     <div class="container">
       <Heading type="h2">{{ title }}</Heading>
-      <Card v-for="article in articles" :key="article.key" :article="article" />
+      <template v-if="!isResult">
+        <Card
+          v-for="article in articles"
+          :key="article.key"
+          :article="article"
+        />
+      </template>
+      <template v-else>
+        <Card v-for="article in result" :key="article.key" :article="article" />
+      </template>
     </div>
   </section>
 </template>
@@ -23,10 +32,17 @@ export default {
       type: String,
       default: '-',
     },
+    isResult: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     articles() {
       return this.$store.getters['articles/getArticles']
+    },
+    result() {
+      return this.$store.getters['articles/getSearchResult']
     },
   },
 }

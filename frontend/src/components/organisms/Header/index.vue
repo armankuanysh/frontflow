@@ -1,17 +1,28 @@
 <template>
   <header :class="['header', isVisible && 'is-visible']">
     <div class="container">
-      <div class="header-inner">
-        <transition name="fade" mode="in-out">
-          <Back v-if="$route.path !== '/'" class="header-back" />
-        </transition>
-        <transition name="fade" mode="in-out">
-          <p>{{ title }}</p>
-        </transition>
-        <transition name="fade" mode="in-out">
-          <Share v-if="$route.path !== '/'" class="header-share" />
-        </transition>
-      </div>
+      <transition name="fade" mode="out-in" appear>
+        <div v-if="isHome" class="header-search">
+          <Input
+            type="search"
+            name="search"
+            placeholder="Поиск постов"
+            @input="searchHandler"
+            @submit="submit"
+          />
+        </div>
+        <div v-else class="header-inner">
+          <transition name="fade" mode="in-out">
+            <Back v-if="$route.path !== '/'" class="header-back" />
+          </transition>
+          <transition name="fade" mode="in-out">
+            <p>{{ title }}</p>
+          </transition>
+          <transition name="fade" mode="in-out">
+            <Share v-if="$route.path !== '/'" class="header-share" />
+          </transition>
+        </div>
+      </transition>
     </div>
   </header>
 </template>
@@ -19,20 +30,25 @@
 <script>
 import Back from 'atoms/Back'
 import Share from 'atoms/Share'
+import Input from 'atoms/Input'
 /**
  * ORGANISMS/Header
  * @displayName Header
  */
 export default {
   name: 'Header',
-  components: { Back, Share },
+  components: { Back, Share, Input },
   data() {
     return {
       scrollTop: 0,
       isVisible: true,
+      query: '',
     }
   },
   computed: {
+    isHome() {
+      return this.$route.name === 'index' || this.$route.name === 'result'
+    },
     title() {
       return this.$store.getters['header/title']
     },
@@ -52,9 +68,15 @@ export default {
     window.removeEventListener('scroll', this.headerHandler)
   },
   methods: {
+    searchHandler(e) {
+      this.query = e
+    },
+    submit() {
+      this.$router.push(`/result?q=${this.query}`)
+    },
     headerHandler() {
       const st = window.scrollY
-      if (st > this.scrollTop) {
+      if (st > this.scrollTop && st > 50) {
         this.isVisible = false
       } else {
         this.isVisible = true
@@ -72,7 +94,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  height: 50px;
+  height: 60px;
   width: 100vw;
   padding: 15px 0;
   -webkit-backdrop-filter: blur(10px);
@@ -91,8 +113,13 @@ export default {
 
   &-inner {
     position: relative;
+    width: 100%;
     display: flex;
     justify-content: center;
+  }
+  &-search {
+    width: 100%;
+    height: 100%;
   }
 
   &-back,
@@ -113,6 +140,13 @@ export default {
     font-family: $f-heading;
     font-size: rem(22);
     font-weight: 500;
+  }
+
+  .container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 
   .logo {
