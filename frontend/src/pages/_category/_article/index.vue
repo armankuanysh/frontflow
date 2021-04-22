@@ -48,11 +48,6 @@ export default {
       offset: 0,
     }
   },
-  head() {
-    return {
-      base: { target: '_blank', href: `${process.env.strapiBaseUri}` },
-    }
-  },
   mounted() {
     this.offset = this.$refs.articleTop.getBoundingClientRect().height
   },
