@@ -25,6 +25,7 @@ time {
   display: flex;
   align-items: center;
   font-family: $f-heading;
+  font-weight: 200;
   font-size: rem(16);
   margin-bottom: rem(15);
   svg {
