@@ -32,6 +32,8 @@ button {
   align-items: center;
   font-family: $f-heading;
   font-weight: 300;
+  color: var(--c-default);
+  transition: color 0.25s;
   svg {
     margin-right: 8px;
   }

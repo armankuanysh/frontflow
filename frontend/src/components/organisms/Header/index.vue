@@ -1,7 +1,7 @@
 <template>
   <header :class="['header', isVisible && 'is-visible']">
     <div class="container">
-      <transition name="fade" mode="out-in" appear>
+      <transition name="fade-slide" mode="out-in">
         <div v-if="isHome" class="header-search">
           <Input
             type="search"
@@ -18,9 +18,9 @@
           <transition name="fade" mode="in-out">
             <p>{{ title }}</p>
           </transition>
-          <transition name="fade" mode="in-out">
+          <!-- <transition name="fade" mode="in-out">
             <Share v-if="$route.path !== '/'" class="header-share" />
-          </transition>
+          </transition> -->
         </div>
       </transition>
     </div>
@@ -29,7 +29,7 @@
 
 <script>
 import Back from 'atoms/Back'
-import Share from 'atoms/Share'
+// import Share from 'atoms/Share'
 import Input from 'atoms/Input'
 /**
  * ORGANISMS/Header
@@ -37,7 +37,7 @@ import Input from 'atoms/Input'
  */
 export default {
   name: 'Header',
-  components: { Back, Share, Input },
+  components: { Back, Input },
   data() {
     return {
       scrollTop: 0,
@@ -99,7 +99,7 @@ export default {
   padding: 15px 0;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  background-color: rgba($c-accent, 0.05);
+  background-color: rgba(var(--c-accent-rgb), 0.05);
   display: flex;
   align-items: center;
   transition: 0.35s;
@@ -116,10 +116,12 @@ export default {
     width: 100%;
     display: flex;
     justify-content: center;
+    @include transition-s;
   }
   &-search {
     width: 100%;
     height: 100%;
+    @include transition-s;
   }
 
   &-back,

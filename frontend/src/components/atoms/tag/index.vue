@@ -57,16 +57,18 @@ export default {
   display: inline-block;
   font-family: $f-heading;
   font-size: rem(18);
-  color: $c-default;
+  color: var(--c-accent);
   padding: 10px 30px;
   margin: 0 10px;
   border-radius: 30px;
   text-decoration: none;
-  box-shadow: 0 rem(10) rem(20) rgba($c-accent, 0.25);
+  box-shadow: 0 rem(5) rem(10) rgba(var(--c-accent-rgb), 0.25);
+  @include transition-s;
   &.nuxt-link-exact-active {
     color: #fff;
-    background-color: $c-accent;
-    box-shadow: 0 rem(10) rem(20) rgba(#fff, 0.25);
+    background-color: var(--c-accent);
+    box-shadow: 0 rem(5) rem(10) rgba(var(--c-bg-rgb), 0.25);
+    @include transition-s;
     svg path {
       fill: #fff;
     }

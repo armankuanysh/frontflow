@@ -76,10 +76,10 @@ main {
       height: 100%;
       background: linear-gradient(
         180deg,
-        rgba(#fff, 0.25),
-        rgba(#fff, 0.5),
-        rgba(#fff, 0.85),
-        rgba(#fff, 1)
+        rgba(var(--c-bg-rgb), 0.25),
+        rgba(var(--c-bg-rgb), 0.5),
+        rgba(var(--c-bg-rgb), 0.85),
+        rgba(var(--c-bg-rgb), 1)
       );
     }
     img {
@@ -104,7 +104,7 @@ main {
   .category-link {
     font-family: $f-heading;
     font-size: rem(14);
-    color: lighten($c-default, 10);
+    color: var(--c-deafult-light);
     text-decoration: none;
   }
 

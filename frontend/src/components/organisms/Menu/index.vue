@@ -85,11 +85,11 @@ export default {
   left: 0;
   width: 100vw;
   height: calc(100vh - 70px);
-  background-color: #fff;
+  background-color: var(--c-bg);
   padding: 35px 0;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  box-shadow: 0 rem(5) rem(20) rgba($c-accent, 0.25);
+  box-shadow: 0 rem(5) rem(20) rgba(var(--c-accent-rgb), 0.25);
   transition: 0.5s ease-in;
   transform: translateY(calc(100% - 95px));
   z-index: 10;
@@ -160,7 +160,7 @@ export default {
       font-family: $f-heading;
       font-size: rem(24);
       font-weight: 500;
-      color: $c-default;
+      color: var(--c-default);
       a {
         display: inline-block;
         font-size: inherit;
@@ -168,7 +168,7 @@ export default {
         text-decoration: none;
         padding: 15px 0;
         &.nuxt-link-exact-active {
-          color: $c-accent;
+          color: var(--c-accent);
         }
       }
     }

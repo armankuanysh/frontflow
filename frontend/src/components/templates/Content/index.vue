@@ -1,19 +1,24 @@
 <template>
-  <article
-    v-if="article.content"
-    id="editor"
-    class="content"
-    v-html="$md.render(article.content)"
-  />
+  <div class="article">
+    <BottomBar class="article-actions" />
+    <article
+      v-if="article.content"
+      id="editor"
+      class="content"
+      v-html="$md.render(article.content)"
+    />
+  </div>
 </template>
 
 <script>
+import BottomBar from 'organisms/ArticleBottomBar'
 /**
  * TEMPLATES/Content
  * @displayName Content
  */
 export default {
   name: 'Content',
+  components: { BottomBar },
   props: {
     article: {
       type: Object,
@@ -24,6 +29,12 @@ export default {
 </script>
 
 <style lang="scss">
+.article {
+  position: relative;
+  width: 100%;
+  height: max-content;
+  overflow: visible;
+}
 .content {
   width: 100%;
   font-size: 20;
@@ -38,9 +49,9 @@ export default {
     height: auto;
   }
   a {
-    color: #000;
+    color: var(--c-link);
     &:visited {
-      color: #545454;
+      opacity: 0.75;
     }
   }
   h2,

@@ -23,6 +23,19 @@
   transition: transform 250ms, opacity 250ms;
 }
 
+.fade-slide-left-enter-active,
+.fade-slide-left-leave-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: 0.3s;
+}
+.fade-slide-left-enter,
+.fade-slide-left-leave-to {
+  transform: translateX(-10%);
+  opacity: 0;
+  transition: 0.5s;
+}
+
 @keyframes shine {
   0% {
     background-position: -100px;

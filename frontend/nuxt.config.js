@@ -67,6 +67,7 @@ export default {
     '@nuxt/typescript-build',
     '@nuxtjs/stylelint-module',
     '@nuxtjs/svg',
+    '@nuxtjs/color-mode',
     'nuxt-build-optimisations',
   ],
 

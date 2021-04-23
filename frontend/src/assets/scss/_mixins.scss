@@ -1,3 +1,7 @@
+@mixin transition-s {
+  transition: color 0.25s;
+}
+
 @mixin phone {
   @media (min-width: #{$sm}) {
     @content;

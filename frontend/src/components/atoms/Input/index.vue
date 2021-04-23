@@ -67,8 +67,9 @@ export default {
   width: 100%;
   // height: 24px;
   height: 100%;
-  background-color: #c3e7ed;
+  background-color: var(--c-accent-light);
   backdrop-filter: blur(15px);
+  color: var(--c-default);
   border-radius: 6px;
   border: 1px solid rgba($c-accent, 0);
   transition: 0.25s ease-in;
@@ -96,6 +97,10 @@ export default {
       outline: none;
       font-family: $f-heading;
       font-weight: 300;
+      &::placeholder {
+        color: var(--c-deafult-light);
+        @include transition-s;
+      }
       &::-webkit-search-cancel-button {
         appearance: none;
         width: 20px;

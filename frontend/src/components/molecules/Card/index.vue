@@ -66,10 +66,11 @@ export default {
   margin: 15px 0;
   font-family: $f-heading;
   text-decoration: none;
-  color: $c-default;
+  color: var(--c-default);
   border-radius: 10px;
-  box-shadow: 0 rem(10) rem(20) rgba($c-accent, 0.1);
+  box-shadow: 0 rem(10) rem(20) rgba(var(--c-accent-rgb), 0.1);
   overflow: hidden;
+  @include transition-s;
   &__image {
     position: relative;
     height: 180px;
@@ -81,6 +82,7 @@ export default {
     );
     background-size: 600px;
     animation: shine 1.6s infinite linear;
+    @include transition-s;
     &::before {
       content: '';
       position: absolute;
@@ -89,8 +91,9 @@ export default {
       width: 100%;
       height: rem(30);
       display: block;
-      background-color: rgba(#fff, 0.25);
+      background-color: rgba(var(--c-bg-rgb), 0.25);
       backdrop-filter: blur(10px);
+      @include transition-s;
     }
     img {
       display: block;

@@ -1,3 +1,46 @@
+@function hextorgb($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+:root {
+  --c-accent: #40b9ca;
+  --c-accent-rgb: #{hextorgb(#40b9ca)};
+  --c-accent-light: #c3e7ed;
+  --c-default: #444;
+  --c-default-rgb: #{hextorgb(#444)};
+  --c-deafult-light: #676767;
+  --c-deafult-light-rgb: #{hextorgb(#676767)};
+  --c-bg: #fff;
+  --c-bg-rgb: #{hextorgb(#fff)};
+  --c-link: #000;
+}
+
+.dark-mode {
+  --c-accent: #5ebeca;
+  --c-accent-rgb: #{hextorgb(#5ebeca)};
+  --c-accent-light: #295b64;
+  --c-default: #fff;
+  --c-default-rgb: #{hextorgb(#fff)};
+  --c-deafult-light: #aaa;
+  --c-deafult-light-rgb: #{hextorgb(#aaa)};
+  --c-bg: #121212;
+  --c-bg-rgb: #{hextorgb(#121212)};
+  --c-link: #eaeaea;
+}
+
+.light-mode {
+  --c-accent: #2e8692;
+  --c-accent-rgb: #{hextorgb(#2e8692)};
+  --c-accent-light: #c3e7ed;
+  --c-default: #444;
+  --c-default-rgb: #{hextorgb(#444)};
+  --c-deafult-light: #676767;
+  --c-deafult-light-rgb: #{hextorgb(#676767)};
+  --c-bg: #fff;
+  --c-bg-rgb: #{hextorgb(#fff)};
+  --c-link: #000;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -17,7 +60,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   overflow-x: hidden;
-  color: $c-default;
+  // color: $c-default;
+  color: var(--c-default);
+  background-color: var(--c-bg);
+  transition: background-color 0.25s;
 }
 
 #__layout {
