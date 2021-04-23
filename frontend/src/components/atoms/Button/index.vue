@@ -1,5 +1,9 @@
 <template>
-  <button :class="['btn', type && `btn--${type}`]" @click="handler">
+  <button
+    :class="['btn', type && `btn--${type}`]"
+    :disabled="disabled"
+    @click="handler"
+  >
     <slot></slot>
   </button>
 </template>
@@ -15,6 +19,10 @@ export default {
     type: {
       type: String,
       default: 'default',
+    },
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {
@@ -32,12 +40,23 @@ export default {
   appearance: none;
   padding: 15px 25px;
   border-radius: 5px;
+  font-family: $f-heading;
   font-size: rem(16);
   font-weight: 700;
   line-height: 1;
   text-decoration: none;
   cursor: pointer;
   transition: 0.25s;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &--default {
+    width: 100%;
+    background-color: var(--c-accent);
+    color: #fff;
+  }
 
   &--circle {
     width: rem(48);

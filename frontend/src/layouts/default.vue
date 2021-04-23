@@ -18,6 +18,9 @@ export default {
       this.$store.commit('menu/close')
     },
   },
+  created() {
+    this.$services.auth.checkUser()
+  },
 }
 </script>
 

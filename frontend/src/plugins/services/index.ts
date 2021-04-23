@@ -8,6 +8,7 @@ import DateFormat, { IDateFormat } from 'services/DateFormat'
 import Header, { IHeader } from 'services/Header/index'
 import Page from 'services/Page'
 import ReadingEstimate, { IReadingEstimate } from 'services/ReadingEstimate'
+import Auth, { IAuth } from 'services/Auth/index'
 
 export type servicesT = {
   http: HttpClient
@@ -18,6 +19,7 @@ export type servicesT = {
   header: IHeader
   page: Page
   reading: IReadingEstimate
+  auth: IAuth
 }
 
 declare module '@nuxt/types' {
@@ -48,6 +50,7 @@ export default function (ctx: Context, inject: any) {
     header: new Header(ctx.store),
     page: new Page(),
     reading: new ReadingEstimate(),
+    auth: new Auth(ctx.$strapi, ctx.store),
   }
 
   inject('services', services)
