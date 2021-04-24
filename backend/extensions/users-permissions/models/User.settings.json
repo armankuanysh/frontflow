@@ -76,6 +76,11 @@
     },
     "second_name": {
       "type": "string"
+    },
+    "liked_articles": {
+      "collection": "article",
+      "via": "likers",
+      "dominant": true
     }
   }
 }

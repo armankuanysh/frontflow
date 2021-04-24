@@ -87,6 +87,7 @@ export default {
     '@nuxtjs/style-resources',
     '@nuxtjs/strapi',
     '@nuxtjs/markdownit',
+    '@nuxtjs/toast',
   ],
 
   buildOptimisations: {
@@ -106,6 +107,10 @@ export default {
       },
       {
         name: 'tags',
+        type: 'collection',
+      },
+      {
+        name: 'users',
         type: 'collection',
       },
       {
@@ -134,6 +139,10 @@ export default {
       './src/assets/scss/_mixins.scss',
       './src/assets/scss/_variables.scss',
     ],
+  },
+
+  toast: {
+    position: 'top-center',
   },
 
   axios: {},

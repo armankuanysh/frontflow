@@ -12,6 +12,18 @@
         :alt="article.title"
         loading="lazy"
       />
+      <Author
+        :author="article.author.name"
+        :image="$services.page.getStrapiMedia(article.author.picture.url)"
+        class="card__user"
+      />
+      <!-- <div class="card__user">
+        <img
+          :src="$services.page.getStrapiMedia(article.author.picture.url)"
+          :alt="article.author.name"
+        />
+        <p>{{ article.author.name }}</p>
+      </div> -->
     </div>
     <div class="card__content">
       <div class="card__details">
@@ -34,13 +46,14 @@ import Heading from 'atoms/Heading'
 import PublishedAt from 'atoms/PublishedAt'
 import TimeEstimate from 'atoms/TimeEstimate'
 import Hashtag from 'atoms/Hashtag'
+import Author from 'molecules/Author'
 /**
  * MOLECULES/Card
  * @displayName Card
  */
 export default {
   name: 'Card',
-  components: { Heading, PublishedAt, TimeEstimate, Hashtag },
+  components: { Heading, PublishedAt, TimeEstimate, Hashtag, Author },
   props: {
     article: {
       type: Object,
@@ -83,24 +96,15 @@ export default {
     background-size: 600px;
     animation: shine 1.6s infinite linear;
     @include transition-s;
-    &::before {
-      content: '';
-      position: absolute;
-      bottom: -1px;
-      left: 0;
-      width: 100%;
-      height: rem(30);
-      display: block;
-      background-color: rgba(var(--c-bg-rgb), 0.25);
-      backdrop-filter: blur(10px);
-      @include transition-s;
-    }
     img {
       display: block;
       width: 100%;
       height: 180px;
       object-fit: cover;
     }
+  }
+  &__user {
+    margin-top: -50px;
   }
   &__content {
     padding: 20px;

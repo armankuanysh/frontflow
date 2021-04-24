@@ -1,5 +1,10 @@
 <template>
   <main>
+    <Author
+      :image="$services.page.getStrapiMedia(article.author.picture.url)"
+      :author="article.author.name"
+      class="article-author"
+    />
     <div class="article-image" :style="{ marginBottom: `-${offset + 25}px` }">
       <img
         :src="$services.page.getStrapiMedia(article.image.url)"
@@ -35,6 +40,7 @@
 import Heading from 'atoms/Heading'
 import PublishedAt from 'atoms/PublishedAt'
 import TimeEstimate from 'atoms/TimeEstimate'
+import Author from 'molecules/Author'
 import Content from 'templates/Content'
 /**
  * 'PAGES/category'
@@ -42,17 +48,22 @@ import Content from 'templates/Content'
  */
 export default {
   name: 'Category',
-  components: { Content, Heading, PublishedAt, TimeEstimate },
-  async asyncData({ $strapi, params, store }) {
-    const slug = params.article
-    const article = await $strapi.find('articles', { slug })
-    store.commit('header/setTitle', 'Пост')
-    return { article: article[0] }
-  },
+  components: { Content, Heading, PublishedAt, TimeEstimate, Author },
   data() {
     return {
       offset: 0,
     }
+  },
+  async fetch({ $strapi, params, store }) {
+    const slug = params.article
+    const article = await $strapi.find('articles', { slug })
+    store.commit('header/setTitle', 'Пост')
+    store.commit('articles/setSingleArticle', article[0])
+  },
+  computed: {
+    article() {
+      return this.$store.getters['articles/getSingleArticle']
+    },
   },
   mounted() {
     this.offset = this.$refs.articleTop.getBoundingClientRect().height
@@ -62,10 +73,13 @@ export default {
 
 <style lang="scss">
 main {
+  .article-author {
+    position: absolute !important;
+  }
   .article-image {
     position: relative;
     width: 100%;
-    height: 300px;
+    height: 350px;
     &::before {
       content: '';
       position: absolute;

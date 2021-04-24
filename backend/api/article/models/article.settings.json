@@ -61,6 +61,11 @@
     "tags": {
       "via": "articles",
       "collection": "tag"
+    },
+    "likers": {
+      "via": "liked_articles",
+      "plugin": "users-permissions",
+      "collection": "user"
     }
   }
 }

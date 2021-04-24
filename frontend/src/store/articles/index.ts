@@ -4,6 +4,7 @@ import { RootState } from '../'
 export const state = () => ({
   articles: [],
   searchResult: [],
+  singleArticle: {},
 })
 
 export type ArticlesState = ReturnType<typeof state>
@@ -11,6 +12,7 @@ export type ArticlesState = ReturnType<typeof state>
 export const getters: GetterTree<ArticlesState, RootState> = {
   getArticles: (s) => s.articles,
   getSearchResult: (s) => s.searchResult,
+  getSingleArticle: (s) => s.singleArticle,
 }
 
 export const mutations: MutationTree<ArticlesState> = {
@@ -19,6 +21,9 @@ export const mutations: MutationTree<ArticlesState> = {
   },
   setSearchResult(s, p) {
     s.searchResult = p
+  },
+  setSingleArticle(s, p) {
+    s.singleArticle = p
   },
 }
 

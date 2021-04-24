@@ -9,6 +9,7 @@ import Header, { IHeader } from 'services/Header/index'
 import Page from 'services/Page'
 import ReadingEstimate, { IReadingEstimate } from 'services/ReadingEstimate'
 import Auth, { IAuth } from 'services/Auth/index'
+// import Like, { ILike } from 'services/Like'
 
 export type servicesT = {
   http: HttpClient
@@ -20,6 +21,7 @@ export type servicesT = {
   page: Page
   reading: IReadingEstimate
   auth: IAuth
+  // like: ILike
 }
 
 declare module '@nuxt/types' {
@@ -51,6 +53,7 @@ export default function (ctx: Context, inject: any) {
     page: new Page(),
     reading: new ReadingEstimate(),
     auth: new Auth(ctx.$strapi, ctx.store, ctx.redirect),
+    // like: new Like(ctx.store, ctx.$repositories.user),
   }
 
   inject('services', services)
