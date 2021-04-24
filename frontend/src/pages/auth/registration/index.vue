@@ -4,8 +4,8 @@
       <div class="auth-logo">
         <img :src="logo" alt="FRONTFLOW." />
       </div>
-      <Heading type="h1" class="auth-heading"> Авторизация </Heading>
-      <AuthForm />
+      <Heading type="h1" class="auth-heading"> Регистрация </Heading>
+      <RegistrationForm />
       <Button class="home" type="circle" @click="$router.push('/')">
         <Home />
       </Button>
@@ -16,18 +16,18 @@
 <script>
 import Home from 'icons/home.svg?inline'
 import Heading from 'atoms/Heading'
-import AuthForm from 'organisms/AuthForm'
+import RegistrationForm from 'organisms/RegistrationForm'
 import Button from 'atoms/Button'
 
 import LogoD from '~/assets/images/logo.png'
 import LogoL from '~/assets/images/logo-light.png'
 /**
- * 'PAGES/Auth'
- * @displayName Auth
+ * 'PAGES/Registration'
+ * @displayName Registration
  */
 export default {
-  name: 'Auth',
-  components: { Heading, AuthForm, Button, Home },
+  name: 'Registration',
+  components: { Heading, RegistrationForm, Button, Home },
   layout: 'auth',
   computed: {
     logo() {

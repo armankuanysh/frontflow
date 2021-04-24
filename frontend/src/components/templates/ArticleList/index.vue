@@ -1,7 +1,10 @@
 <template>
   <section class="article-list">
     <div class="container">
-      <Heading type="h2">{{ title }}</Heading>
+      <Heading type="h2">
+        <slot></slot>
+        {{ title && title }}
+      </Heading>
       <template v-if="!isResult">
         <Card
           v-for="article in articles"
@@ -30,7 +33,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: '-',
+      default: '',
     },
     isResult: {
       type: Boolean,
@@ -55,6 +58,11 @@ export default {
   h2 {
     font-family: $f-heading;
     font-size: rem(28);
+    svg {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+    }
   }
 }
 </style>

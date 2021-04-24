@@ -40,6 +40,9 @@ export default {
   pageTransition: {
     name: 'fade',
   },
+  layoutTransition: {
+    name: 'fade',
+  },
 
   srcDir: 'src/',
 

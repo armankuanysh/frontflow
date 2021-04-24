@@ -1,7 +1,12 @@
 <template>
   <nuxt-link
     :to="slug"
-    :class="['tag', icon[slug] && 'tag--icon', isActive && 'is-active']"
+    :class="[
+      'tag',
+      icon[slug] && 'tag--icon',
+      isActive && 'is-active',
+      $colorMode.value === 'dark' && 'is-dark',
+    ]"
   >
     <component :is="icon[slug]" v-if="icon[slug]" />
     <slot v-else></slot>
@@ -10,6 +15,9 @@
 
 <script>
 import Home from 'icons/home.svg?inline'
+import Search from 'icons/search.svg?inline'
+import Bookmark from 'icons/bookmark-filled.svg?inline'
+import User from 'icons/user.svg?inline'
 import Angular from 'icons/angular.svg?inline'
 import Docker from 'icons/docker.svg?inline'
 import Git from 'icons/git.svg?inline'
@@ -21,7 +29,17 @@ import Typescript from 'icons/typescript.svg?inline'
  */
 export default {
   name: 'Tag',
-  components: { Home, Angular, Docker, Git, Nuxt, Typescript },
+  components: {
+    Home,
+    Angular,
+    Docker,
+    Git,
+    Nuxt,
+    Typescript,
+    Bookmark,
+    User,
+    Search,
+  },
   props: {
     slug: {
       type: String,
@@ -36,6 +54,9 @@ export default {
     return {
       icon: {
         '/': Home,
+        '/search': Search,
+        '/profile/saved': Bookmark,
+        '/profile': User,
         '/nuxtjs': Nuxt,
         '/docker': Docker,
         '/angular': Angular,
@@ -46,7 +67,7 @@ export default {
   },
   computed: {
     isActive() {
-      return this.$route.path.startsWith(this.slug)
+      return this.$route.path === this.slug
     },
   },
 }
@@ -64,13 +85,16 @@ export default {
   text-decoration: none;
   box-shadow: 0 rem(5) rem(10) rgba(var(--c-accent-rgb), 0.25);
   @include transition-s;
+  &.is-dark {
+    box-shadow: 0 rem(5) rem(20) rgba(var(--c-accent-rgb), 0.25);
+  }
   &.nuxt-link-exact-active {
     color: #fff;
     background-color: var(--c-accent);
     box-shadow: 0 rem(5) rem(10) rgba(var(--c-bg-rgb), 0.25);
     @include transition-s;
     svg path {
-      fill: #fff;
+      stroke: #fff;
     }
   }
 

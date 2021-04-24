@@ -61,6 +61,21 @@
     },
     "saved_articles": {
       "collection": "article"
+    },
+    "profile_photo": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "second_name": {
+      "type": "string"
     }
   }
 }

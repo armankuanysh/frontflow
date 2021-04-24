@@ -50,7 +50,7 @@ export default function (ctx: Context, inject: any) {
     header: new Header(ctx.store),
     page: new Page(),
     reading: new ReadingEstimate(),
-    auth: new Auth(ctx.$strapi, ctx.store),
+    auth: new Auth(ctx.$strapi, ctx.store, ctx.redirect),
   }
 
   inject('services', services)

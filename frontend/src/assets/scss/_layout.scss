@@ -3,9 +3,10 @@
 }
 
 :root {
-  --c-accent: #40b9ca;
-  --c-accent-rgb: #{hextorgb(#40b9ca)};
-  --c-accent-light: #c3e7ed;
+  --c-accent: #008447;
+  // --c-accent: #40b9ca;
+  --c-accent-rgb: #{hextorgb(#008447)};
+  --c-accent-light: #97cfb5;
   --c-default: #444;
   --c-default-rgb: #{hextorgb(#444)};
   --c-deafult-light: #676767;
@@ -16,9 +17,10 @@
 }
 
 .dark-mode {
-  --c-accent: #5ebeca;
-  --c-accent-rgb: #{hextorgb(#5ebeca)};
-  --c-accent-light: #295b64;
+  --c-accent: #18bf7f;
+  // --c-accent: #5ebeca;
+  --c-accent-rgb: #{hextorgb(#18bf7f)};
+  --c-accent-light: #065c3b;
   --c-default: #fff;
   --c-default-rgb: #{hextorgb(#fff)};
   --c-deafult-light: #aaa;
@@ -29,9 +31,9 @@
 }
 
 .light-mode {
-  --c-accent: #2e8692;
-  --c-accent-rgb: #{hextorgb(#2e8692)};
-  --c-accent-light: #c3e7ed;
+  --c-accent: #008447;
+  --c-accent-rgb: #{hextorgb(#008447)};
+  --c-accent-light: #97cfb5;
   --c-default: #444;
   --c-default-rgb: #{hextorgb(#444)};
   --c-deafult-light: #676767;

@@ -13,7 +13,7 @@
         </div>
         <div v-else class="header-inner">
           <transition name="fade" mode="in-out">
-            <Back v-if="$route.path !== '/'" class="header-back" />
+            <Back v-if="!isStack" class="header-back" />
           </transition>
           <transition name="fade" mode="in-out">
             <p>{{ title }}</p>
@@ -43,11 +43,15 @@ export default {
       scrollTop: 0,
       isVisible: true,
       query: '',
+      stack: ['index', 'search', 'profile', 'profile-saved'],
     }
   },
   computed: {
+    isStack() {
+      return this.stack.includes(this.$route.name)
+    },
     isHome() {
-      return this.$route.name === 'index' || this.$route.name === 'result'
+      return this.$route.name === 'index' || this.$route.name === 'search'
     },
     title() {
       return this.$store.getters['header/title']
@@ -72,7 +76,8 @@ export default {
       this.query = e
     },
     submit() {
-      this.$router.push(`/result?q=${this.query}`)
+      this.$store.dispatch('articles/search', this.query)
+      this.$router.push(`/search?q=${this.query}`)
     },
     headerHandler() {
       const st = window.scrollY

@@ -97,6 +97,7 @@ export default {
       outline: none;
       font-family: $f-heading;
       font-weight: 300;
+      color: var(--c-default);
       &::placeholder {
         color: var(--c-deafult-light);
         @include transition-s;

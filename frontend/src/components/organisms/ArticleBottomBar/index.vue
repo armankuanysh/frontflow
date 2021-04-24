@@ -52,10 +52,11 @@ export default {
   position: fixed;
   bottom: 0;
   left: 0;
-  transform: translateY(-60px);
+  transform: translateY(-40px);
   transition: 0.7s;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  z-index: 3;
   &.is-top {
     transform: translateY(0);
   }

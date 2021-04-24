@@ -12,10 +12,14 @@ import ArticleList from 'templates/ArticleList'
  * @displayName result
  */
 export default {
-  name: 'Result',
+  name: 'Search',
   components: { ArticleList },
   asyncData({ store, query }) {
+    store.commit('header/setTitle', 'Поиск')
     store.dispatch('articles/search', query?.q)
+  },
+  updated() {
+    console.log('search updated')
   },
 }
 </script>

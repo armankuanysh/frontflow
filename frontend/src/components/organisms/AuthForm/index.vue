@@ -16,10 +16,15 @@
       placeholder="••••••"
       :value="password"
     />
-    <Button class="auth-form__submit" :disabled="disabled" @click="submit">
+    <Button
+      class="auth-form__submit"
+      :disabled="disabled"
+      :loading="loading"
+      @click="submit"
+    >
       Войти
     </Button>
-    <nuxt-link to="/auth/register" class="auth-form__link"
+    <nuxt-link to="/auth/registration" class="auth-form__link"
       >Регистрация</nuxt-link
     >
   </form>
@@ -39,6 +44,7 @@ export default {
     return {
       username: '',
       password: '',
+      loading: false,
     }
   },
   computed: {
@@ -49,11 +55,13 @@ export default {
   methods: {
     async submit(e) {
       e.preventDefault()
+      this.loading = true
       if (this.username && this.password) {
         const loged = await this.$services.auth.login(
           this.username,
           this.password
         )
+        this.loading = false
         loged && this.$router.push('/')
       }
     },

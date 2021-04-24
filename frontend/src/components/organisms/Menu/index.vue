@@ -1,19 +1,28 @@
 <template>
-  <nav :class="['menu', isOpen && 'is-open', isHiding && 'is-hiding']">
+  <nav
+    :class="[
+      'menu',
+      isOpen && 'is-open',
+      isHiding && 'is-hiding',
+      $colorMode.value === 'dark' && 'is-dark',
+    ]"
+  >
     <div class="menu-float">
       <Button class="menu-float__btn" type="circle" @click="open">
         <Shevron />
       </Button>
     </div>
     <div class="menu-head">
-      <Tag class="menu-home" slug="/">Home</Tag>
-      <div class="menu-top__wrap">
-        <ul class="menu-top">
-          <li v-for="category in popular" :key="category.id">
-            <Tag :slug="'/' + category.slug">{{ category.name }}</Tag>
-          </li>
-        </ul>
-      </div>
+      <Tag class="menu-head__item menu-home" slug="/">Home</Tag>
+      <Tag class="menu-head__item menu-search" slug="/search">Search</Tag>
+      <div class="menu-head__item menu-divider"></div>
+      <Tag class="menu-head__item menu-saved" slug="/profile/saved">Saved</Tag>
+      <Tag
+        :class="['menu-head__item', 'menu-user', isLoged && 'is-active']"
+        slug="/profile"
+      >
+        User
+      </Tag>
     </div>
     <ul class="menu-body">
       <li v-for="category in categories" :key="category.id">
@@ -39,18 +48,19 @@ export default {
   data() {
     return {
       categories: [],
-      popular: [],
       isHiding: false,
       scrollTop: 0,
     }
   },
   async fetch() {
     this.categories = await this.$repositories.categories.getCategories()
-    this.popular = await this.$repositories.categories.getPopular()
   },
   computed: {
     isOpen() {
       return this.$store.getters['menu/state']
+    },
+    isLoged() {
+      return !!this.$strapi.user
     },
   },
   mounted() {
@@ -86,27 +96,41 @@ export default {
   width: 100vw;
   height: calc(100vh - 70px);
   background-color: var(--c-bg);
-  padding: 35px 0;
+  padding: 15px 0 35px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
   box-shadow: 0 rem(5) rem(20) rgba(var(--c-accent-rgb), 0.25);
   transition: 0.5s ease-in;
-  transform: translateY(calc(100% - 95px));
+  transform: translateY(calc(100% - 80px));
   z-index: 10;
+  &.is-dark {
+    box-shadow: 0 rem(5) rem(40) rgba(var(--c-accent-rgb), 0.25);
+  }
 
   &.is-hiding {
     transform: translateY(calc(100% - 35px));
+    .menu-head {
+      transform: translateY(40px);
+    }
   }
 
   &.is-open {
     transform: translateY(0);
-    padding: 70px 0 35px;
+    padding: 15px 0 35px;
 
     .menu-float {
       transform: translate(-50%, 50%);
       &__btn svg {
         transform: rotate(180deg);
       }
+    }
+
+    .menu-head {
+      transform: translateY(0);
+    }
+
+    .menu-divider {
+      margin: 0 12px;
     }
   }
 
@@ -115,7 +139,8 @@ export default {
     top: 0;
     left: 50%;
     transition: 0.5s;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
+    z-index: 5;
 
     &__btn {
       display: flex;
@@ -128,24 +153,22 @@ export default {
   }
 
   .menu-head {
-    display: flex;
-    .menu-home {
-      width: 40px;
-    }
-  }
-
-  .menu-top {
     position: relative;
-    list-style: none;
-    margin: 0;
-    padding: 0;
     display: flex;
-
-    &__wrap {
-      height: 70px;
-      padding-bottom: 30px;
-      display: flex;
-      overflow: scroll;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: 0.45s;
+    &__item {
+      margin: 0 12px;
+    }
+    .menu-divider {
+      width: 38px;
+      height: 38px;
+      transition: 0.45s;
+      // margin: 0 10px;
+    }
+    .menu-user.is-active {
+      border: 1.5px dashed var(--c-accent);
     }
   }
 

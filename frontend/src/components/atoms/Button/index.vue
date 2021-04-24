@@ -1,6 +1,6 @@
 <template>
   <button
-    :class="['btn', type && `btn--${type}`]"
+    :class="['btn', type && `btn--${type}`, loading && 'is-loading']"
     :disabled="disabled"
     @click="handler"
   >
@@ -24,6 +24,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     handler(e) {
@@ -35,6 +39,7 @@ export default {
 
 <style lang="scss" scoped>
 .btn {
+  position: relative;
   border: 1px solid transparent;
   outline: none;
   appearance: none;
@@ -52,10 +57,44 @@ export default {
     cursor: not-allowed;
   }
 
+  &.is-loading {
+    color: transparent;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 20px;
+      display: block;
+      border-radius: 50%;
+      border: 2px solid var(--c-default);
+      border-left-color: transparent;
+      transform: translate(-50%, -50%);
+      animation: loading 5s infinite ease-out;
+    }
+  }
+
   &--default {
     width: 100%;
     background-color: var(--c-accent);
     color: #fff;
+  }
+
+  &--inline {
+    width: 100%;
+    background-color: transparent;
+    font-size: rem(20);
+    font-weight: 300;
+    color: var(--c-default);
+    text-align: left;
+    padding: 8px 0;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    svg {
+      margin-right: 10px;
+    }
   }
 
   &--circle {
@@ -65,6 +104,15 @@ export default {
     border-radius: 50px;
     background-color: #fff;
     box-shadow: 0 rem(5) rem(20) rgba($c-accent, 0.25);
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: translate(-50%, -50%) rotate(0);
+  }
+  10% {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 </style>

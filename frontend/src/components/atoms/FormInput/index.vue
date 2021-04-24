@@ -87,10 +87,15 @@ export default {
     border: 1px solid transparent;
     outline: none;
     padding: 8px 12px;
+    color: var(--c-default);
     border-radius: 6px;
     transition: 0.25s;
     &:focus {
       border-color: var(--c-accent);
+    }
+    &::placeholder {
+      color: var(--c-deafult-light);
+      @include transition-s;
     }
   }
   &__hint {
